@@ -20,6 +20,7 @@ VALUES(value1,value2..)
 INSERT INTO Persons
 VALUES ("40404000","Marcos", "Allan", "3050-20", "Machakos");
 #Insert values to specific columns
-INSERT INTO table_name
-COLUMN(column1,column2..),
+INSERT INTO table_name(column1,column2..)
 VALUES(value1, value2,..);
+INSERT INTO Persons(PersonID, FirstName,LastName, Address,City)
+VALUES("30232020","Manse","Musa","32023_23","Latgiss");
