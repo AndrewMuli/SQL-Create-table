@@ -14,4 +14,12 @@ DROP TABLE customers;
 ALTER TABLE - Changes contents within the table i.e
 ALTER TABLE table_name;
 ADD COLUMN column_name;
-
+#Inserting values
+#INSERT INTO table_name
+VALUES(value1,value2..)
+INSERT INTO Persons
+VALUES ("40404000","Marcos", "Allan", "3050-20", "Machakos");
+#Insert values to specific columns
+INSERT INTO table_name
+COLUMN(column1,column2..),
+VALUES(value1, value2,..);
