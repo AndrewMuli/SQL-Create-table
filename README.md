@@ -24,3 +24,12 @@ INSERT INTO table_name(column1,column2..)
 VALUES(value1, value2,..);
 INSERT INTO Persons(PersonID, FirstName,LastName, Address,City)
 VALUES("30232020","Manse","Musa","32023_23","Latgiss");
+INSERT INTO Persons(PersonID, LastName, Address,City)
+VALUES("30232020","Musa","32023_23","Latgiss");
+#UPDATE Statement - Modifies the table data
+#UPDATE table_name
+#SET column _name = new name
+#WHERE column_name = existing_name
+UPDATE Persons
+SET FirstName = "Alex"
+WHERE LastName = "Musa"
