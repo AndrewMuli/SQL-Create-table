@@ -102,7 +102,8 @@ WHERE FirstName LIKE '%Al%';
 --E.G
 
 CREATE TABLE Staff (
-    Staffno VARCHAR (255),  
+    Staffno VARCHAR (255),
+    Branchno VARCHAR(255),
     Firstname VARCHAR(255),
     Lastname VARCHAR(255),
     Position TEXT,
@@ -112,17 +113,21 @@ CREATE TABLE Staff (
     CONSTRAINT PK_Staff PRIMARY KEY (Staffno)
 );
 -- Inserting a new record into the Staff table
-INSERT INTO Staff (Staffno, Firstname, Lastname, Position, Salary, Sex, Dob) 
-VALUES ('KE324', 'Keli', 'Mark', 'Data Scientist', 40000, 'Male', '2000-01-01');
+INSERT INTO Staff (Staffno,Branchno, Firstname, Lastname, Position, Salary, Sex, Dob) 
+VALUES ('KE324', '20RA','Keli', 'Mark', 'Data Scientist', 40000, 'Male', '2000-01-01');
 -- Inserting multiple records into the Staff table
-INSERT INTO Staff (Staffno, Firstname, Lastname, Position, Salary, Sex, Dob) 
+INSERT INTO Staff (Staffno, Branchno, Firstname, Lastname, Position, Salary, Sex, Dob) 
 VALUES 
-    ('KE325', 'Alice', 'Johnson', 'Software Engineer', 60000, 'Female', '1995-03-15'),
-    ('KE326', 'David', 'Smith', 'Project Manager', 75000, 'Male', '1988-07-22'),
-    ('KE327', 'Emma', 'Williams', 'UX Designer', 55000, 'Female', '1992-12-05'),
-    ('KE328', 'James', 'Brown', 'Data Analyst', 50000, 'Male', '1990-11-30'),
-    ('KE329', 'Sophia', 'Davis', 'HR Specialist', 45000, 'Female', '1994-02-20'),
-    ('KE330', 'Michael', 'Wilson', 'DevOps Engineer', 70000, 'Male', '1986-05-10');
+    ('KE325', '20RA', 'Anna', 'Smith', 'Data Analyst', 45000, 'Female', '1995-05-15'),
+    ('KE326', '20RB', 'John', 'Doe', 'Data Analyst', 46000, 'Male', '1992-03-22'),
+    ('KE327', '20RC', 'Emily', 'Johnson', 'Data Analyst', 47000, 'Female', '1994-07-10'),
+    ('KE328', '20RD', 'Michael', 'Brown', 'Manager', 80000, 'Male', '1988-09-15'),
+    ('KE329', '20RE', 'Sarah', 'Davis', 'Manager', 82000, 'Female', '1991-12-01'),
+    ('KE330', '20RF', 'Laura', 'Wilson', 'UX Designer', 55000, 'Female', '1993-02-20'),
+    ('KE331', '20RG', 'David', 'Miller', 'Software Engineer', 60000, 'Male', '1986-11-30'),
+    ('KE332', '20RH', 'Chris', 'Taylor', 'Project Manager', 75000, 'Male', '1989-06-25'),
+    ('KE333', '20RI', 'Sophia', 'Anderson', 'Product Owner', 70000, 'Female', '1990-04-14'),
+    ('KE334', '20RJ', 'James', 'Thomas', 'Database Administrator', 62000, 'Male', '1987-10-08');
 --Checking for BETWEEN and NOT BETWEEN
 SELECT FirstName, Lastname, Position,Sex
 FROM Staff
@@ -136,7 +141,7 @@ WHERE Salary >=70000 AND Salary <= 75000;
 --NOT IN Checks for a data values that do not lie in a specific list of values 
 SELECT FirstName,LastName,Position
 FROM Staff
-WHERE Position IN ('Manager','Engineer');
+WHERE Position IN ('Manager');
 --Could also be expressed as 
 SELECT FirstName,LastName,Position
 FROM Staff
@@ -149,4 +154,35 @@ FROM Staff
 SELECT Staffno, FirstName,LastName,Dob
 FROM Staff
    ORDER BY Dob, Position ASC;
+--AGGREGATION
+--COUNT -Returns the number of rows in a specified column
+--SUM -Adds the number of values in a specified column
+--AVG -Returns average of values in a specied column
+--MIN -Returns the smallest value in a specified column
+--MAX - Returns the largest value in a specified column
+--Count no. of staff paid more than 50000
+SELECT COUNT (*) AS count
+FROM Staff
+WHERE  Salary >= 50000;
+--Find total number of managers and their salaries
+SELECT COUNT(Staffno) AS count, SUM(Salary) AS sum
+FROM Staff
+WHERE Position = 'Software Engineer';
+-- Minimum, Maximum,Average staff salary
+SELECT MIN(Salary) AS min, MAX(Salary)AS max, AVG(Salary) as avg
+FROM Staff;
+--GROUP BY CLAUSE
+--Groups data from the SELECT tables  and produces a single summary row in each group
+--Group Staff by Gender, count them and their average salaries
+SELECT Sex, COUNT(Staffno) AS count, AVG(Salary) AS average
+FROM Staff
+GROUP BY Sex;
+--HAVING CLAUSE - Designed with Group By clause to restrict what appears in final result
+--WHERE clause filters individual rows 
+--HAVING clause filters  groups going into final result table
+SELECT Branchno, COUNT(Staffno) AS count, AVG(Salary) AS average
+FROM Staff
+GROUP BY Branchno
+HAVING Staffno >2 ;
+
 
