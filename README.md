@@ -184,5 +184,51 @@ SELECT Branchno, COUNT(Staffno) AS count, AVG(Salary) AS average
 FROM Staff
 GROUP BY Branchno
 HAVING Staffno >2 ;
+--
+--UNION OPERATIONS
+-- Statements must have same number of columns
+--Columns  must have similar data types
+--Columns must be in the same order
+--syntax
+--SELECT column_name(s) FROM table1
+--UNION
+--SELECT column_name(s) FROM table2
+--To get all values including duplicates use #UNION ALL syntax
+--Since UNION select distinct values
+--SELECT City FROM Customers
+--UNION
+--SELECT City FROM Suppliers
+--ORDER BY City;
+--
+--INTERSECT OPERATOR
+--SELECT Column_1[,Column_2,..Column_n]
+--FROM table_1[tabl_2,...table_n]
+--INTERSECT
+--SELECT Column_1[,Column_2,..Column_n]
+--FROM table_1[tabl_2,...table_n]
+--SELECT City FROM Customers
+--INTERSECT
+--SELECT City FROM Suppliers
+--ORDER BY City;
+--
+--VIEWS(Virtual tables craeted by users to restrict data access and also summarize data)
+--CREATE VIEW View_name AS SELECT
+--column1,column2..
+--FROM table_name
+--WHERE[condition]
+--e.g syntax 
+--CREATE VIEW CUSTOMER_VIEW AS SELECT Name, Age FROM Costomers;
+--UPDATING A VIEW
+--UPDATE CUSTOMER_VIEW
+--SET Age = 50
+--WHERE Name = 'Alex';
+--DELETING ROWS in a VIEW
+--DELETE FROM CUSTOMERS_VIEW
+--WHERE Age = 22;
+--DROPPING A VIEW
+--DROP VIEW VIEW NAME;
+--DROP VIEW CUSTOMER_VIEW;
+--
+--Working with Subqueries
 
 
